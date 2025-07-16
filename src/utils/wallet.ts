@@ -1,4 +1,4 @@
-import { BrowserProvider, Contract, formatEther, parseUnits, getAddress } from 'ethers';
+import { BrowserProvider, Contract, formatEther, parseUnits, getAddress, Network } from 'ethers';
 import { WalletInfo, WalletState } from '../types';
 import { TESTNET_CONFIG, USDT_CONTRACT_ADDRESS } from '../config/constants';
 
@@ -259,7 +259,11 @@ export const connectWallet = async (wallet: WalletInfo): Promise<WalletState> =>
       }
     }
 
-    const browserProvider = new BrowserProvider(provider);
+    // Create BSC Testnet network configuration with ENS disabled
+    const bscTestnetNetwork = new Network('bnbt', 97);
+    bscTestnetNetwork.ensAddress = null;
+    
+    const browserProvider = new BrowserProvider(provider, bscTestnetNetwork);
     const signer = await browserProvider.getSigner();
     const address = await signer.getAddress();
     
