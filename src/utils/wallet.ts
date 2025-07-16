@@ -113,57 +113,67 @@ export const detectWallets = (): WalletInfo[] => {
     }
 
     // Check for multiple providers (when user has multiple wallets)
-    if (ethereum.providers && Array.isArray(ethereum.providers)) {
-      ethereum.providers.forEach((provider: any) => {
-        if (provider.isMetaMask && !wallets.find(w => w.name === 'MetaMask')) {
-          wallets.push({
-            name: 'MetaMask',
-            icon: 'https://raw.githubusercontent.com/MetaMask/brand-resources/master/SVG/metamask-fox.svg',
-            installed: true,
-            provider: provider
-          });
-        }
-        if (provider.isTrust && !wallets.find(w => w.name === 'Trust Wallet')) {
-          wallets.push({
-            name: 'Trust Wallet',
-            icon: 'https://trustwallet.com/assets/images/media/assets/trust_platform.svg',
-            installed: true,
-            provider: provider
-          });
-        }
-        if (provider.isCoinbaseWallet && !wallets.find(w => w.name === 'Coinbase Wallet')) {
-          wallets.push({
-            name: 'Coinbase Wallet',
-            icon: 'https://avatars.githubusercontent.com/u/18060234?s=280&v=4',
-            installed: true,
-            provider: provider
-          });
-        }
-        if (provider.isSafePal && !wallets.find(w => w.name === 'SafePal')) {
-          wallets.push({
-            name: 'SafePal',
-            icon: 'https://safepal.io/static/media/logo.d1c1c4c4.svg',
-            installed: true,
-            provider: provider
-          });
-        }
-        if (provider.isExodus && !wallets.find(w => w.name === 'Exodus')) {
-          wallets.push({
-            name: 'Exodus',
-            icon: 'https://www.exodus.com/img/logo/exodus-logo-blue.svg',
-            installed: true,
-            provider: provider
-          });
-        }
-        if (provider.isXDEFI && !wallets.find(w => w.name === 'XDEFI Wallet')) {
-          wallets.push({
-            name: 'XDEFI Wallet',
-            icon: 'https://xdefi.io/static/media/logo.b0b4c8b4.svg',
-            installed: true,
-            provider: provider
-          });
-        }
-      });
+    // Check for multiple providers (when user has multiple wallets)
+    try {
+      if (ethereum.providers && Array.isArray(ethereum.providers)) {
+        ethereum.providers.forEach((provider: any) => {
+          if (provider.isMetaMask && !wallets.find(w => w.name === 'MetaMask')) {
+            wallets.push({
+              name: 'MetaMask',
+              icon: 'https://raw.githubusercontent.com/MetaMask/brand-resources/master/SVG/metamask-fox.svg',
+              installed: true,
+              provider: provider
+            });
+          }
+          if (provider.isTrust && !wallets.find(w => w.name === 'Trust Wallet')) {
+            wallets.push({
+              name: 'Trust Wallet',
+              icon: 'https://trustwallet.com/assets/images/media/assets/trust_platform.svg',
+              installed: true,
+              provider: provider
+            });
+          }
+          if (provider.isCoinbaseWallet && !wallets.find(w => w.name === 'Coinbase Wallet')) {
+            wallets.push({
+              name: 'Coinbase Wallet',
+              icon: 'https://avatars.githubusercontent.com/u/18060234?s=280&v=4',
+              installed: true,
+              provider: provider
+            });
+          }
+          if (provider.isSafePal && !wallets.find(w => w.name === 'SafePal')) {
+            wallets.push({
+              name: 'SafePal',
+              icon: 'https://safepal.io/static/media/logo.d1c1c4c4.svg',
+              installed: true,
+              provider: provider
+            });
+          }
+          if (provider.isExodus && !wallets.find(w => w.name === 'Exodus')) {
+            wallets.push({
+              name: 'Exodus',
+              icon: 'https://www.exodus.com/img/logo/exodus-logo-blue.svg',
+              installed: true,
+              provider: provider
+            });
+          }
+          if (provider.isXDEFI && !wallets.find(w => w.name === 'XDEFI Wallet')) {
+            wallets.push({
+              name: 'XDEFI Wallet',
+              icon: 'https://xdefi.io/static/media/logo.b0b4c8b4.svg',
+              installed: true,
+              provider: provider
+            });
+          }
+        });
+      }
+    } catch (providersError: any) {
+      // Handle SecurityError or other issues when accessing ethereum.providers
+      if (providersError.name === 'SecurityError' || providersError.message?.includes('cross-origin')) {
+        console.warn('Multiple provider detection blocked due to cross-origin restrictions:', providersError.message);
+      } else {
+        console.warn('Error accessing ethereum.providers:', providersError);
+      }
     }
 
     // If no specific wallet detected but ethereum exists, add as generic wallet
