@@ -108,6 +108,14 @@ export const approveUSDTSpending = async (
       throw new Error('Approval transaction failed');
     }
     
+    // Verify the allowance was set correctly after confirmation
+    const updatedAllowance = await usdtContract.allowance(await signer.getAddress(), PAYMENT_DISTRIBUTOR_ADDRESS);
+    const requiredAmountWei = parseUnits(TOTAL_PAYMENT_AMOUNT, decimals);
+    
+    if (updatedAllowance < requiredAmountWei) {
+      throw new Error(`Approval failed to set sufficient allowance. Required: ${TOTAL_PAYMENT_AMOUNT} USDT, but allowance is only ${formatUnits(updatedAllowance, decimals)} USDT`);
+    }
+    
     console.log('USDT spending approved successfully');
     return tx.hash;
     
