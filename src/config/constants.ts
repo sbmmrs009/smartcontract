@@ -18,10 +18,10 @@ export const TESTNET_CONFIG = {
 };
 
 // BEP-20 USDT contract address on BSC Testnet
-export const USDT_CONTRACT_ADDRESS = '0x708bb8cfacfb992d7b00e0afe415aec608d73f7c';
+export const USDT_CONTRACT_ADDRESS = '0x1234567890AbcdEF1234567890aBcdef12345678';
 
 // Payment Distributor Smart Contract Address - Deployed on BSC Testnet
-export const PAYMENT_DISTRIBUTOR_ADDRESS = '0x1234567890abcdef1234567890abcdef12345678';
+export const PAYMENT_DISTRIBUTOR_ADDRESS = '0x708bb8cfacfb992d7b00e0afe415aec608d73f7c';
 
 // Admin wallet address - receives total payment and handles distribution
 export const ADMIN_WALLET_ADDRESS = '0xf52f981dafb26dc2ce86e48fbf6fbc2e35cd9444'; // UPDATE THIS WITH YOUR ADMIN WALLET
