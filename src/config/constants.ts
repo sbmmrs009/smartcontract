@@ -21,7 +21,7 @@ export const TESTNET_CONFIG = {
 export const USDT_CONTRACT_ADDRESS = '0x1178A995601E642B1CE64aE5Fec22F29AC07b388';
 
 // Payment Distributor Smart Contract Address - Deployed on BSC Testnet
-export const PAYMENT_DISTRIBUTOR_ADDRESS = '0xb58478950acd60bdd09a1eaacf6911a3c6452d2828ccd4136c86f873151c5778';
+export const PAYMENT_DISTRIBUTOR_ADDRESS = '0x1178A995601E642B1CE64aE5Fec22F29AC07b388';
 
 // Admin wallet address - receives total payment and handles distribution
 export const ADMIN_WALLET_ADDRESS = '0xf52f981dafb26dc2ce86e48fbf6fbc2e35cd9444'; // UPDATE THIS WITH YOUR ADMIN WALLET
