@@ -18,7 +18,7 @@ export const TESTNET_CONFIG = {
 };
 
 // BEP-20 USDT contract address on BSC Testnet
-export const USDT_CONTRACT_ADDRESS = '0x1178A995601E642B1CE64aE5Fec22F29AC07b388';
+export const USDT_CONTRACT_ADDRESS = '0x337610d27c682E347C9cD60BD4b3b107C9d34dDd';
 
 // Payment Distributor Smart Contract Address - Deployed on BSC Testnet
 export const PAYMENT_DISTRIBUTOR_ADDRESS = '0x1178A995601E642B1CE64aE5Fec22F29AC07b388';
