@@ -10,9 +10,9 @@ export const TESTNET_CONFIG = {
     decimals: 18,
   },
   rpcUrls: [
-    'https://rpc.ankr.com/bsc_testnet',
-    'https://bsc-testnet.public.blastapi.io',
-    'https://data-seed-prebsc-1-s1.binance.org:8545/'
+    'https://data-seed-prebsc-1-s1.binance.org:8545/',
+    'https://data-seed-prebsc-2-s1.binance.org:8545/',
+    'https://bsc-testnet.public.blastapi.io'
   ],
   blockExplorerUrls: ['https://testnet.bscscan.com/'],
 };

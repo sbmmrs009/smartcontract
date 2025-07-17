@@ -126,6 +126,8 @@ export const approveUSDTSpending = async (
       throw new Error('USDT approval rejected by user');
     } else if (error.message?.includes('insufficient funds')) {
       throw new Error('Insufficient BNB for gas fees');
+    } else if (error.message?.includes('missing trie node')) {
+      throw new Error('Network connectivity issue. Please try again in a moment.');
     } else {
       throw new Error(`USDT approval failed: ${error.message || 'Unknown error'}`);
     }
@@ -217,6 +219,8 @@ export const executeSmartContractPayment = async (
       throw new Error('Smart contract execution failed. Please check your USDT balance and allowance.');
     } else if (error.message?.includes('Unable to connect to PaymentDistributor contract')) {
       throw error;
+    } else if (error.message?.includes('missing trie node')) {
+      throw new Error('Network connectivity issue. Please try again in a moment.');
     } else {
       throw new Error(`Smart contract payment failed: ${error.message || 'Unknown error'}`);
     }
